@@ -1,0 +1,4 @@
+_main: CODE, 2220 0 30
+_Timer1_ISR: CODE, 2056 0 164
+__initialization: CODE, 2250 0 4
+Total: 198
