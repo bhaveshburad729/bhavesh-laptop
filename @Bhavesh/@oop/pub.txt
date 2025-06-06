@@ -1,0 +1,108 @@
+//Bhushan Sonawane
+//Roll No:S5870
+
+
+import java.util.Scanner;
+class publication{
+
+String title;
+int price,copies;
+public static int total=0;
+
+public int saleCopy()
+{
+	System.out.println("total sale of publication is = "+(copies*price));
+	return(copies*price);
+}
+
+public int getcopies()
+{
+	return this.copies;
+}
+
+public int setcopies(int cp)
+{
+	return this.copies=cp;
+}
+
+public int setprice(int p)
+{
+	return this.price=p;
+}
+
+}
+
+class Book extends publication{
+	String author;
+	int pcopies,price1;
+	public int saleCopy()
+	{
+		System.out.println("total sale of book is = "+(copies*price));
+		total=total+(copies*price);
+		return(copies*price);	
+	}
+public void orderCopies()
+{
+	Scanner in=new Scanner(System.in);
+	System.out.println("ENTER THE TITLE OF THE BOOK TO BE ORDERED = ");
+	title=in.nextLine();
+	System.out.println("ENTER THE AUTHOR OF THE BOOK TO BE ORDERED = ");
+	author=in.nextLine();
+	System.out.println("ENTER THE NO OF COPIES OF THE BOOK TO BE ORDERED = ");
+	pcopies=in.nextInt();
+	System.out.println("ENTER THE PRICE OF THE BOOK TO BE ORDERED = ");
+	price1=in.nextInt();
+
+	setcopies(getcopies()+pcopies);
+	setprice(price1);
+	return;
+}
+}
+
+class Magazine extends publication{
+private int orderQty;
+private String currIssue;
+public String getcurrIssue(){
+	return this.currIssue;
+}
+public void setcurrIssue(String issue){
+	this.currIssue=issue;
+}
+public int getorderQty(){
+	return this.orderQty;
+}
+
+public void setorderQty(int copies){
+	this.orderQty=copies;
+}
+public int saleCopy()
+{
+	System.out.println("TOTAL SALE OF MAGAZINE IS = "+(copies*price));
+	total=total+(copies*price);
+	return(copies*price);
+}
+public void recNewIssue(String pNewIssue){
+	setcopies(orderQty);
+	currIssue=pNewIssue;
+}
+}
+
+class pub{
+public static void main(String args[])
+{
+Book b1=new Book();
+b1.orderCopies();
+
+
+System.out.println("TOTAL COPIES OF THE BOOK1 ORDERED = "+b1.copies);
+b1.saleCopy();
+Book b2=new Book();
+b2.orderCopies();
+
+System.out.println("TOTAL COPIES OF THE BOOK2 ORDERED = "+b2.copies);
+b2.saleCopy();
+System.out.println("TOTAL SALE OF PUBLICATION IS = "+b1.total);
+
+}
+}
+

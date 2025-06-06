@@ -1,0 +1,58 @@
+// NAME = Bhushan Sonawane
+// ROLL.No = S05870
+
+import java.util.*;
+abstract class shape{
+	double val1,val2;
+	void input(){
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the First value = ");
+		val1 = sc.nextDouble();
+		System.out.println("Enter the Second value = ");
+		val2 = sc.nextDouble();
+	}
+	abstract void Computer_area();
+}
+	class Triangle extends shape {
+		void Computer_area()
+		{
+			double area;
+			area=0.1f/0.2*val1*val2;
+			System.out.println("Triangle area = "+area);
+		}
+	}
+	class Rectangle extends shape{
+		void Computer_area()
+		{
+			double area;
+			area=val1*val2;
+		System.out.println("Rectangle area  = "+area);
+		}
+	}
+	class rrangle extends shape{
+		void Computer_area()
+		{
+			double area;
+			area=val1*val2*val1;
+		System.out.println("Rectangle area  = "+area);
+		}
+	}
+	
+ class Dynamic
+{
+	public static void main(String args[])
+	{
+		shape T = new Triangle();
+		shape R = new Rectangle();
+		shape A = new rrangle();
+		
+		T.input();
+		T.Computer_area();
+		R.input();
+		R.Computer_area();
+		A.input();
+		A.Computer_area();
+		
+	}
+}
+

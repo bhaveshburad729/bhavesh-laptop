@@ -1,0 +1,149 @@
+   #include<iostream>
+#include<string.h>
+using namespace std;
+
+typedef struct student
+{
+    int roll_num;
+    char name [10];
+    float marks;
+}s;
+
+
+void insertionSort(s student[10], int n)  
+{  
+    int i,  j;  
+    s  key;
+    for (i = 1; i < n; i++) 
+    {  
+        key= student[i];  
+        j = i - 1;  
+        while (j >= 0 && strcmp(student[j].name, key.name) >0)
+        {  
+            student[j + 1]= student[j];  
+            j = j - 1;  
+        }  
+        student[j + 1]= key;  
+    }  
+}  
+
+
+void search(s student[10],int n,int key)
+{
+    int i;
+    cout<<"\n\tRoll No\tName\tMarks";
+    for(i=0;i<n;i++)
+    {
+        if(key==student[i].marks)
+        {
+            cout<<"\n\t "<< student[i].roll_num<<"\t "<<student[i].name<<"\t "<<student[i].marks;
+        }
+
+    }
+
+}
+
+int bsearch(s student[10], char x[10],int low,int high)
+{
+    int mid;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(strcmp(x,student[mid].name)==0)
+        {
+            return mid;
+        }
+        else if(strcmp(x,student[mid].name)<0)
+        {
+            high=mid-1;
+        }
+        else
+        {
+            low=mid+1;
+        }
+    }
+    return -1;
+}
+
+
+
+int main()
+{
+    s student[10];
+    int choice,n;;
+    do
+    {
+        cout<<"\nEnter your choice:"
+              "\n1. Create database"
+              "\n2. Display database"
+              "\n3.Insertion sort"
+              "\n4. Linear Search"
+               "\n5.Binary Search"
+              "\n6. Exit";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+            {
+                cout<<"\nEnter number of records:";
+                cin>>n;
+                for(int i=0;i<n;i++)
+                {
+                    cout<<"\nEnter roll number:";
+                    cin>>student[i].roll_num;
+                    cout<<"\nEnter name:";
+                    cin>>student[i].name;
+                    cout<<"\nEnter marks:";
+                    cin>>student[i].marks;
+                }
+                break;
+            }
+            case 2:
+            {
+                cout<<"\n\tRoll number\tName\tMarks";
+                for(int i=0;i<n;i++)
+                {
+                    cout<<"\n\t"<<student[i].roll_num<<"\t\t"<<student[i].name<<"\t"<<student[i].marks;
+                }
+                break;
+            }
+
+            case 3:
+            {
+                insertionSort(student,n);
+                break;
+            }
+            case 4:
+            {
+                int key;
+                cout<<"\nEnter the element to be searched";
+                cin>>key;
+                search(student,n,key);
+                break;
+            }
+            case 5:
+            {
+                char key[10];
+                cout<<"\nEnter the name to be searched";
+                cin>>key;
+                insertionSort(student,n);
+                int result=bsearch(student,key,0,(n-1));
+                if(result==-1)
+                {
+                    cout<<"\nStudent data not in database";
+                }
+                else
+                {
+                    cout<<"Student is present";
+                }
+                
+                break;
+            }
+            case 6:
+            {
+                break;
+            }
+        }        
+    }while(choice!=6);
+    return 0;
+}

@@ -1,0 +1,86 @@
+import java.io.*;
+
+import java.util.Scanner;
+class Student1 {
+    public int StudentIdentificationNumber;
+    public String FirstName;
+    public String LastName;
+    public int CreditsSoFar;
+    public double GPA;
+}
+
+ class Central {
+    public static Student1 register() {
+        Student1 kid = new Student1();
+        Scanner scnr = new Scanner(System.in);
+        
+        System.out.println("Enter information about the student");
+        System.out.print("Student ID: ");
+        kid.StudentIdentificationNumber = scnr.nextInt();
+        System.out.print("First Name: ");
+        kid.FirstName = scnr.next();
+        System.out.print("Last Name: ");
+        kid.LastName = scnr.next();
+        System.out.print("Number of credits so far: ");
+        //System.out.println("****************** ");
+        kid.CreditsSoFar = scnr.nextInt();
+        System.out.println("****************** ");
+        System.out.print("Grade point average: ");
+        kid.GPA = scnr.nextDouble();
+        
+        return kid;
+    }
+
+    public static void save(Student1 pupil) throws Exception {
+        String strFilename = "";
+        Scanner scnr = new Scanner(System.in);
+        
+        System.out.print("Enter the file name: ");
+        strFilename = scnr.next();
+        
+        
+        if( !strFilename.equals("")) {
+            
+            File fleExample = new File(strFilename);
+            
+            PrintWriter wrtStudent = new PrintWriter(fleExample);
+
+            wrtStudent.println(pupil.StudentIdentificationNumber);
+            wrtStudent.println(pupil.FirstName);
+            wrtStudent.println(pupil.LastName);
+            wrtStudent.println(pupil.CreditsSoFar);
+            wrtStudent.println(pupil.GPA);
+            
+            
+            wrtStudent.close();
+           
+            System.out.println("The file has been created.");
+        }
+    }
+    
+    public static void show(Student1 std) throws Exception {
+        System.out.println("Student Record");
+        System.out.println("Student ID: " + std.StudentIdentificationNumber);
+        System.out.println("First Name: " + std.FirstName);
+        System.out.println("Last Name: " + std.LastName);
+        System.out.println("****************** ");
+        System.out.println("Number of credits so far: " + std.CreditsSoFar);
+        
+        System.out.println("Grade point average: " + std.GPA);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        String answer = "n";
+        Student1 std = register();
+        Scanner scnr = new Scanner(System.in);
+        
+        System.out.print("Do you want to save this information (y/n)? ");
+        answer = scnr.next();
+        
+        if( (answer.equals("y")) || (answer.equals("Y")) ) {
+	    show(std);
+            save(std);
+        }
+    }
+
+}

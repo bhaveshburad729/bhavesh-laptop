@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.*;
+
+public class Generic{
+
+   public static void main(String[] args) {
+       Scanner scanner = new Scanner(System.in);
+       List<Object> elements = new ArrayList<>();
+
+
+        System.out.println(); 
+        System.out.print("Enter the number of elements: "); 
+        int count = scanner.nextInt();
+        System.out.println("Enter" + "count" + "elements:");
+        System.out.println("--------------------------------");
+
+        for (int i=0; i < count; i++) {
+          System.out.print("Element" + (i+1)+": ");
+          elements.add(scanner.next());
+        }
+
+        System.out.println("------------------------------------");
+        System.out.println("Number of even numbers: " + countEvenOdd(elements,true)); 
+        System.out.println("Number of odd numbers: " + countEvenOdd(elements,false)); 
+        System.out.println("Number of primes: " + countPrimes (elements));
+        System.out.println("Number of palindromes: " + countPalindromes (elements));
+}
+
+
+
+public static int countEvenOdd(List<Object> elements, boolean isEven) {
+    int count = 0;
+    for (int i = 0; i < elements.size(); i++) {
+       Object element = elements.get(i);
+       if (element instanceof String) { 
+          String str = (String) element;
+          try {
+               int num = Integer.parseInt(str);
+               if ((num % 2 ==0 && isEven) || (num % 2 != 0 && !isEven)) {
+                  count++;
+               }
+          } catch (NumberFormatException e) {
+          
+          }
+       }
+   }
+   return count;
+}
+
+
+public static int countPrimes (List<Object> elements) {
+    int count = 0;
+    for (int i = 0; i< elements.size(); i++) {
+        Object element = elements.get(i); 
+        if (element instanceof String) {
+             String str = (String) element;
+           try{
+               int num = Integer.parseInt(str);
+               if (isPrime(num)) {
+                count++;
+               }
+          }catch (NumberFormatException e) { 
+      
+          }
+     }
+
+  }
+  return count;
+}
+
+
+public static boolean isPrime(int num) {
+    if (num <= 1) {
+       return false;
+   }
+   for (int i = 2; i <= Math.sqrt(num); i++) {
+       if (num% i ==0) {
+            return false;
+       }
+  } 
+  return true;
+}
+
+
+public static int countPalindromes (List<Object> elements) {
+   int count = 0 ;
+   for (int i = 0 ; i < elements.size(); i++) {
+       Object element = elements.get(i); 
+       if (element instanceof String) {
+            String Str = (String) element; 
+            if (IsPalindrome(Str)) { 
+               count++; 
+            }
+       }
+   }
+   return count;
+ }
+}
+
